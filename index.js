@@ -28,6 +28,9 @@ function onClick(evento) {
     case "0":
       añadirNumero(cliquear);
       break;
+    case "←":
+      borrar(cliquear);
+      break;
   }
 }
 
@@ -39,3 +42,14 @@ function añadirNumero(value) {
   firstNumber += value;
   result.innerText = firstNumber;
 }
+function borrar(value) {
+  firstNumber = firstNumber.slice(0, -1);
+
+  if (firstNumber === "") {
+    result.innerText = "0";
+  } else {
+    result.innerText = firstNumber;
+  }
+}
+
+function Suma() {}
