@@ -16,6 +16,7 @@ function onClick(evento) {
     case "C":
       eliminar();
       break;
+
     case "1":
     case "2":
     case "3":
@@ -31,6 +32,10 @@ function onClick(evento) {
     case "←":
       borrar(cliquear);
       break;
+    case "=":
+      const resultado = parseInt(firstNumber) + parseInt(secondNumber);
+      result.innerText = string(resultado);
+      break;
   }
 }
 
@@ -39,8 +44,13 @@ function eliminar() {
 }
 
 function añadirNumero(value) {
-  firstNumber += value;
-  result.innerText = firstNumber;
+  if (operator === "") {
+    firstNumber += value;
+    result.innerText = firstNumber;
+  } else {
+    secondNumber += value;
+    result.innerText = secondNumber;
+  }
 }
 function borrar(value) {
   firstNumber = firstNumber.slice(0, -1);
