@@ -29,12 +29,24 @@ function onClick(evento) {
     case "0":
       añadirNumero(cliquear);
       break;
+
+    case "÷":
+    case "×":
+    case "−":
+    case "+":
+      gestionaOperator(cliquear);
+      break;
+
     case "←":
       borrar(cliquear);
       break;
     case "=":
-      const resultado = parseInt(firstNumber) + parseInt(secondNumber);
-      result.innerText = string(resultado);
+      switch (cliquear) {
+        case "÷":
+          secondNumber = firstNumber;
+          firstNumber = "";
+          break;
+      }
       break;
   }
 }
@@ -45,10 +57,10 @@ function eliminar() {
 
 function añadirNumero(value) {
   if (operator === "") {
-    firstNumber += value;
+    firstNumber = firstNumber + value;
     result.innerText = firstNumber;
   } else {
-    secondNumber += value;
+    secondNumber = secondNumber + value;
     result.innerText = secondNumber;
   }
 }
@@ -61,5 +73,8 @@ function borrar(value) {
     result.innerText = firstNumber;
   }
 }
-
-function Suma() {}
+function gestionaOperator(value) {
+  operator = value;
+}
+const resultado = parseInt(firstNumber) + parseInt(secondNumber);
+result.innerText = String(resultado);
