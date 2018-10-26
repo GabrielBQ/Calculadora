@@ -1,16 +1,15 @@
 const result = document.querySelector(".results");
 
+const container = document.querySelector(".valor");
+container.addEventListener("click", onClick);
+
 let firstNumber = "";
 let secondNumber = "";
 let operator = "";
 
-const container = document.querySelector(".valor");
-container.addEventListener("click", onClick);
-
 function onClick(evento) {
   const cliquear = evento.target.innerText;
   console.log(`Clickado el ${cliquear}`);
-  result.innerText = cliquear;
 
   switch (cliquear) {
     case "C":
@@ -41,17 +40,17 @@ function onClick(evento) {
       borrar(cliquear);
       break;
     case "=":
-      switch (cliquear) {
-        case "÷":
-          secondNumber = firstNumber;
-          firstNumber = "";
-          break;
-      }
+      igual();
       break;
   }
 }
 
 function eliminar() {
+  if (operator === "") {
+    firstNumber = "";
+  } else {
+    secondNumber = "";
+  }
   result.innerText = 0;
 }
 
@@ -64,17 +63,52 @@ function añadirNumero(value) {
     result.innerText = secondNumber;
   }
 }
-function borrar(value) {
-  firstNumber = firstNumber.slice(0, -1);
-
-  if (firstNumber === "") {
-    result.innerText = "0";
-  } else {
-    result.innerText = firstNumber;
-  }
-}
 function gestionaOperator(value) {
   operator = value;
 }
-const resultado = parseInt(firstNumber) + parseInt(secondNumber);
-result.innerText = String(resultado);
+
+function borrar(value) {
+  if (operator === "") {
+    firstNumber = firstNumber.slice(0, -1);
+    if (firstNumber === "") {
+      result.innerText = "0";
+    } else {
+      result.innerText = firstNumber;
+    }
+  } else {
+    secondNumber = secondNumber.slice(0, -1);
+    if (secondNumber === "") {
+      result.innerText = "0";
+    } else {
+      result.innerText = secondNumber;
+    }
+  }
+}
+
+function igual() {
+  let resultado;
+  switch (operator) {
+    case "÷":
+      resultado = parseInt(firstNumber) / parseInt(secondNumber);
+      result.innerText = String(resultado);
+      break;
+
+    case "×":
+      resultado = parseInt(firstNumber) * parseInt(secondNumber);
+      result.innerText = String(resultado);
+      break;
+
+    case "−":
+      resultado = parseInt(firstNumber) - parseInt(secondNumber);
+      result.innerText = String(resultado);
+      break;
+
+    case "+":
+      resultado = parseInt(firstNumber) + parseInt(secondNumber);
+      result.innerText = String(resultado);
+      break;
+  }
+  firstNumber = resultado;
+  operator = "";
+  secondNumber = "";
+}
