@@ -2,11 +2,11 @@ const result = document.querySelector(".results");
 
 const container = document.querySelector(".valor");
 container.addEventListener("click", onClick);
-
+//PARA  QUE SEPARE LA PRIMERA Y LA SEGUNDA CIFRA AL PULSAR UN OPERADOR(PARA PODER HACER LAS FUNCIONES)
 let firstNumber = "";
 let secondNumber = "";
 let operator = "";
-
+//FUNCIÓN PARA RECONOCER LOS BOTONES AL PULSARLOS
 function onClick(evento) {
   const cliquear = evento.target.innerText;
   console.log(`Clickado el ${cliquear}`);
@@ -15,7 +15,6 @@ function onClick(evento) {
     case "C":
       eliminar();
       break;
-
     case "1":
     case "2":
     case "3":
@@ -28,14 +27,12 @@ function onClick(evento) {
     case "0":
       añadirNumero(cliquear);
       break;
-
     case "÷":
     case "×":
     case "−":
     case "+":
       gestionaOperator(cliquear);
       break;
-
     case "←":
       borrar(cliquear);
       break;
@@ -44,7 +41,7 @@ function onClick(evento) {
       break;
   }
 }
-
+//FUNCIÓN  DE RESETEO
 function eliminar() {
   if (operator === "") {
     firstNumber = "";
@@ -53,7 +50,7 @@ function eliminar() {
   }
   result.innerText = 0;
 }
-
+//FUNCIÓN PARA MANTENER SIGUIENTES NUMEROS EN PANTALLA
 function añadirNumero(value) {
   if (operator === "") {
     firstNumber = firstNumber + value;
@@ -63,10 +60,11 @@ function añadirNumero(value) {
     result.innerText = secondNumber;
   }
 }
+//FUNCIÓN PARA RECONOCER LOS BOTONES OPERADORES
 function gestionaOperator(value) {
   operator = value;
 }
-
+//FUNCIÓN DE FLECHA PARA ELIMINAR ULTIMAS CIFRAS(EXCEPTO LOS RESULTADOS)
 function borrar(value) {
   if (operator === "") {
     firstNumber = firstNumber.slice(0, -1);
@@ -84,7 +82,7 @@ function borrar(value) {
     }
   }
 }
-
+//FUNCIÓN PARA REALIZAR OPERACIONES
 function igual() {
   let resultado;
   switch (operator) {
