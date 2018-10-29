@@ -1,4 +1,4 @@
-#SimplyCalculator
+# SimplyCalculator
 
 Solucion del examen del ObradoiroTeo2018
 
