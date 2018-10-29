@@ -1,12 +1,12 @@
 const result = document.querySelector(".results");
 
 const container = document.querySelector(".valor");
-container.addEventListener("click", onClick);
-//PARA  QUE SEPARE LA PRIMERA Y LA SEGUNDA CIFRA AL PULSAR UN OPERADOR(PARA PODER HACER LAS FUNCIONES)
+//PARA  QUE SEPARE LA PRIMERA Y LA SEGUNDA CIFRA AL PULSAR UN OPERADOR(PARA PODER HACER LAS FUNCIONES)(Estado Global)
 let firstNumber = "";
 let secondNumber = "";
 let operator = "";
 //FUNCIÓN PARA RECONOCER LOS BOTONES AL PULSARLOS
+container.addEventListener("click", onClick);
 function onClick(evento) {
   const cliquear = evento.target.innerText;
   console.log(`Clickado el ${cliquear}`);
@@ -88,7 +88,7 @@ function igual() {
   switch (operator) {
     case "÷":
       resultado = parseInt(firstNumber) / parseInt(secondNumber);
-      result.innerText = String(resultado);
+      result.innerText = String(resultado); //Se podría usar uno solo para englobar los cuatro poniendolo depues de los case.
       break;
 
     case "×":
@@ -106,6 +106,7 @@ function igual() {
       result.innerText = String(resultado);
       break;
   }
+  //PARA PODER ENCADENAR UNA TERCERA (Y SIGUIENTES) OPERACIÓN, ej: 2+2=4(+2=6)(ES DECIR, QUE EL RESULTADO PASE A SER FIRSTNUMBER)
   firstNumber = resultado;
   operator = "";
   secondNumber = "";
